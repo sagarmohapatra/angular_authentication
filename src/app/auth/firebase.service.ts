@@ -1,19 +1,38 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore } from '@angular/fire/compat/firestore';
-
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class FirestoreService {
-  constructor(private firestore: AngularFirestore) {}
+  idToken: any;
+  email: any;
+  refreshToken: any;
+  expiresIn: any;
+  localId: any;
 
-  // Method to add a new data object to a specific collection and subcollection
-   addUserAuth(data: any): Promise<void> {
-    const authRef = this.firestore.collection('user_details/auth'); // Ensure 'auth' is a collection
-    return authRef.add(data).then(() => {
-      console.log('User added successfully to user_details/auth!');
-    }).catch(error => {
-      console.error('Error adding user: ', error);
+  constructor(private http: HttpClient) {}
+  isLoggedIn = false;
+ 
+  signup(email: string, password: string): Observable<any> {
+    return this.http.post(
+      `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyByah49euVrS1uh_XEmUI-oQW7Aa9HYEMY`,
+      { email, password, returnSecureToken: true }
+    );
+  }
+  login() {
+    this.isLoggedIn = true;
+  }
+  logout() {
+    this.isLoggedIn = false;
+  }
+  isAuthentication() {
+    return new Promise((reslove, reject) => {
+      setTimeout(() => {
+        reslove(this.isLoggedIn);
+        
+      }, 1000);
     });
   }
 }

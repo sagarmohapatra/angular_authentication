@@ -9,15 +9,34 @@ import { FirestoreService } from './firebase.service';
 })
 export class AuthComponent {
   isLoginMode: any = true;
- constructor(private firestoreService: FirestoreService){
-
- }
+  isLoading = false;
+  error:any;
+  constructor(private authService: FirestoreService) {}
   onSwitchMode() {
     this.isLoginMode = !this.isLoginMode;
   }
   onFormSubmit(authForm: NgForm) {
-    // this.addNewData(authForm);
-    
+    if (!authForm.valid) {
+      return;
+    }
+    this.isLoading = true;
+
+    if (this.isLoginMode) {
+    } else {
+      this.authService
+        .signup(authForm.value.email, authForm.value.password)
+        .subscribe(
+          (response: any) => {
+            console.log(response);
+            this.isLoading = false;
+          },
+          (error: any) => {
+            console.log(error);
+            this.isLoading = false;
+            this.error="An Error Ocurred"
+          }
+        );
+    }
   }
   // alternative way of validation other validattion of gamil in html file
   getPasswordErrors(password: FormControl | NgModel): any {
