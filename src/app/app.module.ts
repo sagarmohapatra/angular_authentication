@@ -6,6 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { HttpClientModule } from '@angular/common/http';
+import { HomeComponent } from './home/home.component';
 
 // const firebase = {
 //   apiKey: "AIzaSyByah49euVrS1uh_XEmUI-oQW7Aa9HYEMY",
@@ -19,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
   declarations: [
     AppComponent,
     AuthComponent,
+    HomeComponent,
     
     
   ],
