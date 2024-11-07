@@ -6,7 +6,7 @@ import { AuthComponent } from './auth/auth.component';
 import { FormsModule } from '@angular/forms';
 import { AngularFireModule } from '@angular/fire/compat';
 import { HttpClientModule } from '@angular/common/http';
-import { LoadingSppinerComponent } from './shared/loding_sppiner/loading-sppiner/loading-sppiner.component';
+
 // const firebase = {
 //   apiKey: "AIzaSyByah49euVrS1uh_XEmUI-oQW7Aa9HYEMY",
 //   authDomain: "AuthAngular.firebaseapp.com",
@@ -19,7 +19,7 @@ import { LoadingSppinerComponent } from './shared/loding_sppiner/loading-sppiner
   declarations: [
     AppComponent,
     AuthComponent,
-    LoadingSppinerComponent,
+    
     
   ],
   imports: [
